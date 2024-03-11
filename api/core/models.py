@@ -8,7 +8,7 @@ class Vessel(models.Model):
         return self.vessel_name
     
 class VesselSchedule(models.Model):
-    vessel = models.ForeignKey(Vessel)
+    vessel = models.ForeignKey(Vessel, on_delete=models.CASCADE)
     voyage_number = models.CharField(max_length = 50)
     arrival_date = models.DateField()
 
@@ -20,7 +20,7 @@ class BillOfLading(models.Model):
     STEAMSHIP_HOLD = "S"
     RELEASED = "R"
     AVAILABLE_FOR_PICKUP = "A"
-    STATUS_CHOICES = {
+    RELEASE_STATUS = {
         CUSTOMS_HOLD: "Customs Hold",
         STEAMSHIP_HOLD: "Steamship Hold",
         RELEASED: "Released",
@@ -31,7 +31,6 @@ class BillOfLading(models.Model):
     contact_name = models.CharField(max_length = 200)
     contact_number = models.CharField(max_length = 200)
     contact_email = models.EmailField(max_length = 200)
-    release_status = models.Choice
 
     def __str__(self):
         return self.bol_number
