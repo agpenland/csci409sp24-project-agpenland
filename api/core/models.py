@@ -13,7 +13,7 @@ class VesselSchedule(models.Model):
     arrival_date = models.DateField()
 
     def __str__(self):
-        return self.vessel.vessel_name - self.voyage_number
+        return self.vessel.vessel_name + self.voyage_number
     
 class BillOfLading(models.Model):
     CUSTOMS_HOLD = "C"
@@ -38,6 +38,9 @@ class BillOfLading(models.Model):
 class Container(models.Model):
     bol = models.ForeignKey(BillOfLading, on_delete=models.PROTECT)
     container_number = models.CharField(max_length = 200)
+
+    def __str__(self):
+        return self.container_number
 
 
 
